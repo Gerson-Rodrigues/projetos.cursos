@@ -1,0 +1,48 @@
+<div class="body"> <h4><strong><i class="text-dark">Consulta dos Cursos </i></strong></h4>
+  <hr>
+
+
+    <h5><strong class="text-dark">Lista de Cursos Cadastrados</strong></h5>
+    <hr>
+
+    <table class="table table-over table-sm text-dark">
+      <thead>
+        <tr>
+          <td><strong></strong></td>
+          <td><strong>Curso</strong></td>
+          <td><strong>N- Alunos</strong></td>
+          <td><strong>Inicio</strong></td>
+          <td><strong>Termino</strong></td>
+          <td><strong>Categoria</strong></td>
+          <td><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ações</strong></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of registro">
+
+          <td></td>
+          <td>{{p.descricao}}</td>
+          <td>{{p.alunos}}</td>
+          <td>{{p.inicio| date: 'dd/MM/yyyy'}}</td>
+          <td>{{p.termino| date: 'dd/MM/yyyy'}}</td>
+          <td>{{p.cat.categoria}}</td>
+          <td>
+            <button class="btn btn-outline-success p-2 opacity-100" [routerLink]="['/editar/',p.id]" >Editar</button>&nbsp;
+            <button class="btn btn-outline-danger p-2 opacity-100" (click)="excluir(p.id)">Excluir</button>
+            &nbsp;
+            </td>
+
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6"><strong>Total de Registros: {{ registro.length }}</strong></td>
+        </tr>
+      </tfoot>
+      <!--Régua da Paginação
+      <div class="card-footer">
+        <pagination-controls (pageChange)="handlePageChange($event)" previousLabel=" Back"
+          nextLabel="Next "></pagination-controls>
+      </div>-->
+    </table>
+</div>

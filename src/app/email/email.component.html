@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="body">
+    <h3 class="p-2 text-dark offset-4">
+    <strong><u><i>Envio de Email</i></u></strong>
+    </h3><hr>
+      <form [formGroup]="formEmail" (ngSubmit)="onEmail()" class="offset-1">
+        <div class="row mb-3"></div>
+
+        <div *ngIf="msg" class="mb-2 alert alert-primary col-md-6">
+          <strong>{{ msg }}</strong>
+        </div>
+
+
+          <div class="col-md-10">
+            <label><strong>Assunto</strong></label>
+            <input type="text" class="form-control" formControlName="assunto" placeholder="Ex. Me contate "/>
+            <div class="text-bg-danger text-light opacity-75" *ngIf="form.assunto.touched && form.assunto.invalid">
+              <span *ngIf="form.assunto.errors.required">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong class="offset-7"> Por favor insira um assunto.</strong>
+              </span>
+            </div>
+          </div>
+
+
+          <div class="col-md-10">
+            <label> <strong>Email de Origem</strong></label>
+            <input type="text" class="form-control" formControlName="de" placeholder="Ex. email@gmail.com"/>
+            <div class="text-bg-danger text-light opacity-75" *ngIf="form.de.touched && form.de.invalid">
+              <span *ngIf="form.de.errors.required">
+                <strong class="offset-7"> Por favor, insira um Email de Origem.</strong></span>
+            </div>
+          </div>
+
+          <div class="col-md-10 ">
+            <label><strong>Email de Destino</strong></label>
+            <input type="text" class="form-control" formControlName="para" placeholder="Ex. email@gmail.com"/>
+            <div class="text-bg-danger text-light opacity-75" *ngIf="form.para.touched && form.para.invalid">
+              <span *ngIf="form.para.errors.required">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong class="offset-7">Coloque um destino para envio.</strong>
+              </span>
+            </div>
+          </div>
+
+          <div class="col-md-7">
+            <label class="ls-label"><strong class="ls-label-text">Mensagem</strong></label><br>
+            <textarea maxlength="250" cols="70" rows="5"  formControlName="texto" style="resize: none"></textarea>
+            <div class="text-bg-danger opacity-75" *ngIf="form.texto.touched && form.texto.invalid">
+              <span *ngIf="form.texto.errors.required">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong class="offset-3 text-light">
+                  Coloque um texto no corpo do email.
+                </strong>
+              </span>
+            </div>
+          </div>
+          <div class="row mb-3"></div>
+          <div class="row mb-3"></div>
+
+
+        <div class="row mb-3">
+          <div class="col-md-12 offset-10">
+            <input
+              type="submit"
+              [disabled]="!formEmail.valid"
+              class="btn btn-primary"
+              value="Enviar Email"/>
+          </div>
+        </div>
+        <div class="row mb-3"></div>
+        <div class="row mb-3"></div>
+
+      </form>
+  </div>
+</div>

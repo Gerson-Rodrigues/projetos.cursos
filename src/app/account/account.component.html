@@ -1,0 +1,69 @@
+<div class="container" >
+  <div class="body">
+    <!--FORMULÁRIO DE CADASTRO-->
+    <div class="row mt-3">
+      <form [formGroup]="formCadastroAcc" (ngSubmit)="onSubmit()">
+        <h2>Página de Cadastro</h2>
+        <hr><div class="offset-4">
+        <div class="col-md-4 ">
+          <label>Nome </label>&nbsp;
+          <br/>
+          <input formControlName="nome" type="text" class="form-control" placeholder="Nome Aqui" maxlength="20" />
+          <div class="text-danger" *ngIf="form.nome.touched && form.nome.invalid">
+            <span *ngIf="form.nome.errors.required">
+            <strong>  Por favor, informar o nome do Usuário</strong>
+            </span>
+            <span *ngIf="form.nome.errors.minlength">
+             <strong> insira um valor minimo de 6</strong></span>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <label>Login </label>&nbsp;
+          <br/>
+          <input formControlName="login" type="text" class="form-control" placeholder="Login Requerido" maxlength="20"/>
+          <div class="text-danger" *ngIf="form.login.touched && form.login.invalid">
+            <span *ngIf="form.login.errors.required">
+             <strong> Por favor, informar um login ao Usuário</strong>
+            </span>
+            <span *ngIf="form.login.errors.minlength">
+             <strong> insira um valor minimo de 5</strong></span>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <label >Senha</label>&nbsp;
+          <br/>
+          <input formControlName="senha" type="password" class="form-control" placeholder="Senha" maxlength="10"/>
+          <div class="text-danger" *ngIf="form.senha.touched && form.senha.invalid">
+            <span *ngIf="form.senha.errors.required">
+             <strong>Por favor, informar uma senha</strong>
+            </span>
+            <span *ngIf="form.senha.errors.minlength">
+             <strong>insira um valor minimo de 6</strong> </span>
+          </div>
+        </div>
+        <br/>
+        <div class="d-grid mb-3 col-md-5">
+          <div *ngIf="menssagem_sucesso" class="mb-3 alert alert-success">
+            <strong>{{ menssagem_sucesso }}</strong>
+          </div>
+          <div *ngIf="menssagem_erro" class="mb-3 alert alert-danger">
+            <strong>{{ menssagem_erro }}</strong>
+          </div>
+        </div>
+        <br/>
+
+          <input type="submit" class="btn btn-success" value="Cadastrar"
+          [disabled]="!formCadastroAcc.valid"/>
+          <br/>
+          </div>
+          <p class="offset-8 bg-opacity-100 bg-gradient">
+           <strong> Já tem conta? Ir para
+            <a class="link" [routerLink]="['']">Login </a></strong>
+          </p>
+
+      </form>
+    </div>
+  </div>
+</div>

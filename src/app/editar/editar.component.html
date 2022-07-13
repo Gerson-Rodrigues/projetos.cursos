@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="body">
+    <h3>
+    <strong><i class="p-2 text-dark offset-4">Editar o  Curso</i></strong>
+  </h3><hr>
+      <form [formGroup]="formEditar" (ngSubmit)="onEdit()" class="offset-1 text-dark">
+        <div class="row mb-3"></div>
+        <div class="row mb-3"></div>
+
+        <div *ngIf="mensagem" class="mb-3 alert alert-primary">
+          <strong>{{ mensagem }}</strong>
+        </div>
+        <div class="row mb-3 ">
+
+          <div class="col-md-5">
+            <label><strong>Nome do Curso</strong></label>
+            <input type="text" class="form-control" formControlName="descricao" placeholder="EX. ReactJs"/>
+            <div class="text-danger" *ngIf="form.descricao.touched && form.descricao.invalid">
+              <span *ngIf="form.descricao.errors.required">
+                <strong> Por favor digite um Curso.</strong>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <label> <strong>N- Alunos</strong></label>
+            <input type="number" class="form-control" formControlName="alunos" max="45" min="1" />
+            <div class="text-danger" *ngIf="form.alunos.touched && form.alunos.invalid">
+              <span *ngIf="form.alunos.errors.required">
+                <strong>Insira um número de alunos.</strong></span>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3 ">
+          <div class="col-md-5">
+            <label class="ls-label col-md-3"><b class="ls-label-text">Inicio</b></label>
+            <input type="date" class="form-control ls-mask-phone9_with_ddd" formControlName="inicio"/>
+            <div class="text-danger" *ngIf="form.inicio.touched && form.inicio.invalid">
+              <span *ngIf="form.inicio.errors.required">
+                <strong>Coloque uma data de Inicio.</strong>
+              </span>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <label class="ls-label col-md-3"><b class="ls-label-text">Termino</b></label>
+            <input type="date" class="form-control" formControlName="termino" />
+            <div class="text-danger" *ngIf="form.termino.touched && form.termino.invalid">
+              <span *ngIf="form.termino.errors.required">
+                <strong> Digite uma data de término.</strong>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-5">
+            <label class="ls-label col-md-3"><b class="ls-label-text">Inicio</b></label>
+            <select class="form-select" aria-label="Default select example" formControlName="cat" >
+                <option selected>-- Selecione --</option>
+                <option value="1">Banco de dados</option>
+                <option value="2">Comportamento</option>
+                <option value="3">Comunicação</option>
+                <option value="4">Metodologia</option>
+                <option value="5">Multiplataforma</option>
+            </select>
+            <div class="text-danger" *ngIf="form.cat.touched && form.cat.invalid">
+              <span *ngIf="form.cat.errors.required">
+                <strong>Coloque uma data de Inicio.</strong>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3"></div>
+
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <input
+              type="submit"
+              [disabled]="!formEditar.valid"
+              class="btn btn-primary"
+              value="Salvar Curso"
+            />&nbsp;
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

@@ -1,18 +1,19 @@
-<div class="body"> <h4><strong><i class="text-dark">Consulta dos Cursos </i></strong></h4>
+<div class="body">
+  <h3 align="center"><strong><i class="text-dark" >Consulta dos Cursos </i></strong></h3>
   <hr>
 
 
-    <h5><strong class="text-dark">Lista de Cursos Cadastrados</strong></h5>
+    <h5><strong class="text-dark offset-1">Lista de Cursos Cadastrados</strong></h5>
     <hr>
 
     <table class="table table-over table-sm text-dark">
       <thead>
         <tr>
           <td><strong></strong></td>
-          <td><strong>Curso</strong></td>
-          <td><strong>N- Alunos</strong></td>
+          <td><strong>Descrição do Assunto</strong></td>
           <td><strong>Inicio</strong></td>
           <td><strong>Termino</strong></td>
+          <td><strong>N- Alunos</strong></td>
           <td><strong>Categoria</strong></td>
           <td><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ações</strong></td>
         </tr>
@@ -22,12 +23,12 @@
 
           <td></td>
           <td>{{p.descricao}}</td>
-          <td>{{p.alunos}}</td>
           <td>{{p.inicio| date: 'dd/MM/yyyy'}}</td>
           <td>{{p.termino| date: 'dd/MM/yyyy'}}</td>
+          <td>{{p.alunos}}</td>
           <td>{{p.cat.categoria}}</td>
           <td>
-            <button class="btn btn-outline-success p-2 opacity-100" [routerLink]="['/editar/',p.id]" >Editar</button>&nbsp;
+            <button class="btn btn-outline-success p-2 opacity-100" [routerLink]="['/editar',p.id]" >Editar</button>&nbsp;
             <button class="btn btn-outline-danger p-2 opacity-100" (click)="excluir(p.id)">Excluir</button>
             &nbsp;
             </td>
@@ -45,4 +46,64 @@
           nextLabel="Next "></pagination-controls>
       </div>-->
     </table>
+    <div style="margin-top: 5%"></div>
+
+<form [formGroup]="formPeriodo" (ngSubmit)="onSubmit()">
+  <div class="row mb-3 offset-1">
+    <div class="col-md-10">
+      <label>Descrição do Assunto</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="descricao"/>
+      <div
+        class="text-danger"
+        *ngIf="form.descricao.touched && form.descricao.invalid">
+        <span *ngIf="form.descricao.errors.required">
+          Informe a descrição do assunto
+        </span>
+      </div><hr>
+    </div>
+
+    <div class="row mb-3 col-10">
+
+    <div class="col-md-6">
+      <label>Data de Inicio</label>
+      <input type="date" class="form-control" formControlName="inicio" />
+      <div
+        class="text-danger"
+        *ngIf="form.inicio.touched && form.inicio.invalid">
+        <span *ngIf="form.inicio.errors.required">
+          Informe a Data de Inicio
+        </span>
+      </div>
+      </div>
+
+      <div class="col-md-6">
+        <label>Data de Término</label>
+        <input type="date" class="form-control" formControlName="termino" />
+        <div
+        class="text-danger"
+        *ngIf="form.inicio.touched && form.inicio.invalid">
+        <span *ngIf="form.inicio.errors.required">
+          Informe a Data de Término
+        </span>
+      </div>
+    </div><hr>
+  </div>
+
+
+    <div class="row mb-3" style="margin-top: 1%">
+      <div class="col-md-12">
+        <input
+          type="submit"
+          [disabled]="!formPeriodo.valid"
+          class="btn btn-success"
+          value="Pesquisar"/>
+      </div>
+    </div>
+
+    <form></form>
+  </div>
+</form>
 </div>

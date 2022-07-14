@@ -1,0 +1,29 @@
+<div class="body">
+<h1><b> Consulta das Categorias</b></h1>
+<h3>Listagem das Categorias cadastrados</h3>
+
+<!--a tabela vai ter cabecalho, corpo e rodapé-->
+<table class="table table-hover table-sm">
+<thead>
+
+  <tr>
+    <td><h2>ID</h2></td>
+    <td><h2> Categorias</h2></td>
+
+  </tr>
+
+</thead>
+<tbody>
+  <tr *ngFor="let a of categoria">
+    <td><h3>{{a.cat.id}}</h3></td>
+    <td><h3>{{a.cat.categoria}}</h3></td>
+
+
+  </tr>
+</tbody>
+
+
+</table>
+
+
+</div>

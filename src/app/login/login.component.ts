@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     if(this.authHelper.isAuthenticated()){
       //redireciona
-      window.location.href="/consulta";
+      window.location.href="/inicial";
     }else{
       this.exibirPg = true;
     }
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('login_usuario', this.formLogin.value.login!);
             this.formLogin.reset();
             //redirecionamento
-           window.location.href='/consulta';
+           window.location.href='/inicial';
           },
           e => {
             this.menssagem_erro = 'Erro ao logar';

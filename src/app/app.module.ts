@@ -39,7 +39,7 @@ const routes: Routes = [
     ConsultarComponent,
     EditarComponent,
     TelaInicialComponent,
-    CategoriasComponent,
+    CategoriasComponent
   ],
   imports: [
     BrowserModule,

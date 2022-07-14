@@ -7,6 +7,7 @@ export class TokenInterceptor implements HttpInterceptor{
   intercept(request: HttpRequest<any>, next: HttpHandler):
   Observable<HttpEvent<any>> {
     if(request.url.includes('/api/cursos')){
+      console.log("Passou");
       var accessToken = localStorage.getItem('access_token');
       request = request.clone({
         setHeaders: {Authorization: 'Bearer ' + accessToken}

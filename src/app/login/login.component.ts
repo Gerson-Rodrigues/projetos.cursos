@@ -13,11 +13,16 @@ export class LoginComponent implements OnInit {
   menssagem_erro: String = '';
 
   exibirPg: boolean = false;
+  formLogin!: FormGroup;
 
   constructor(private httpClient: HttpClient,
               private authHelper: AuthHelper) { }
 
   ngOnInit(): void {
+    this.formLogin = new FormGroup({
+      login: new FormControl('',[Validators.required]),
+      senha: new FormControl('',[Validators.required]),
+    });
     if(this.authHelper.isAuthenticated()){
       //redireciona
       window.location.href="/inicial";
@@ -26,18 +31,14 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  formLogin = new FormGroup({
-    login: new FormControl('',[Validators.required]),
-    senha: new FormControl('',[Validators.required]),
-  });
 
-  get form(): any {
-    return this.formLogin.controls;
-  }
 
   onSubmit():void{
     this.menssagem_erro = '';
-    this.httpClient.post(environment.url+"/login",
+    let url=environment.url+"/login";
+    console.log(url);
+    console.log(this.formLogin.value);
+    this.httpClient.post(url,
                         this.formLogin.value,
                         {responseType: 'text'})
           .subscribe(data => {

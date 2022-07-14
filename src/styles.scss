@@ -3,7 +3,7 @@ html, body {
  position: absolute;
   width: 100%;
   height: 80%;
-  background: url(/src/assets/img/Plano_fundo_Cast.png);
+  //background: url(/src/assets/img/Plano_fundo_Cast.png);
   background-repeat: no-repeat;
   background-size: cover; /*Css padrão*/
   -webkit-background-size: cover; /*Css safari e chrome*/
@@ -15,8 +15,17 @@ html, body {
 .background{
   width: 100%;
   height: 100%;
- background-image: linear-gradient(55deg, rgba(51, 133, 158, 0.582) 0%, rgba(243, 243, 235, 0.849) 100%);
+ background-image: linear-gradient(-55deg, rgba(51, 133, 158, 0.582) 0%, rgba(243, 243, 235, 0.849) 100%);
 }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.botao-form{
+  min-width: 150px;
+}
+
+.container{
+  padding-left: 5%;
+  padding-right: 5%;
+}

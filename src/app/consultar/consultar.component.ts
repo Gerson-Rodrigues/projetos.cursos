@@ -15,43 +15,51 @@ export class ConsultarComponent implements OnInit {
   page = 1;
   cursos: any[] = [];
 
+  formPeriodo!: FormGroup;
+
   //injeção de dependência
   constructor(private httpClient: HttpClient) { }
 
   //Método executa quando o componente é aberto
   ngOnInit(): void {
-    this.httpClient.get(environment.url + '/cursos?descricao=' + this.formPeriodo.value.descricao
-    + "&inicio=" + this.formPeriodo.value.inicio + "&termino=" +
-    this.formPeriodo.value.termino).subscribe(
-      data=> {this.registro = data as any[];
-      },
-      e => {console.log(e)}
-    )
-  }
-  formPeriodo = new FormGroup({
+
+    this.formPeriodo = new FormGroup({
     descricao: new FormControl(''),
     inicio: new FormControl(''),
     termino: new FormControl('')
   });
-  
-get form(): any {
-    return this.formPeriodo.controls;
+    this.onSubmit();
   }
+
+  getQueryParams(obj: any ) {
+
+    Object.keys(obj).forEach((key) => (obj[key] == null ||  obj[key] == 'null' || obj[key] == '' )  && delete obj[key]);
+
+    return Object.keys(obj)
+
+        .map(key => `${key}=${encodeURIComponent(obj[key])}`)
+
+        .join('&');
+
+}
+
+limpar() {
+  this.formPeriodo.reset();
+  document.getElementById('descricao')?.focus();
+}
 
 onSubmit(): void {
 
-    this.httpClient.get(environment.url + '/cursos?descricao=' + this.formPeriodo.value.descricao
-      + "&dataInicio=" + this.formPeriodo.value.inicio + "&dataTermino=" +
-      this.formPeriodo.value.termino).subscribe(
-
-        (data) => { this.cursos = data as any[]; },
-
-        (error) => {
-          console.log(error.error);
-          console.log(this.cursos);
-        },
-
-      )
+  let parametros = this.getQueryParams(this.formPeriodo.value);
+  console.log(parametros);
+  this.httpClient.get(`${environment.url}/cursos?${parametros}`)
+  .subscribe(
+    data=> {this.registro = data as any[];
+    },
+    e => {
+      alert(e.error);
+      console.log(e)}
+  )
   }
 
   //função pra fazer a exclusão do produto na API

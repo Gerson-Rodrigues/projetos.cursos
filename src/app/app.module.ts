@@ -12,21 +12,17 @@ import { AccountComponent } from './account/account.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CadastrarComponent } from './cadastrar/cadastrar.component';
-import { CategoriasComponent } from './categorias/categorias.component';
 import { ConsultarComponent } from './consultar/consultar.component';
 import { EditarComponent } from './editar/editar.component';
-import { EmailComponent } from './email/email.component';
 import { LoginComponent } from './login/login.component';
 import { TelaInicialComponent } from './tela-inicial/tela-inicial.component';
 
 const routes: Routes = [
-  {path: 'categorias', component: CategoriasComponent},
   {path: 'inicial', component: TelaInicialComponent},
   {path: 'consultar', component: ConsultarComponent},
   {path: 'cadastrar', component: CadastrarComponent},
   {path: 'editar/:id', component: EditarComponent},
   {path: 'account', component: AccountComponent},
-  {path: 'email', component: EmailComponent},
   {path: '', component: LoginComponent},
 ]
 @NgModule({
@@ -34,12 +30,10 @@ const routes: Routes = [
     AppComponent,
     AccountComponent,
     LoginComponent,
-    EmailComponent,
     CadastrarComponent,
     ConsultarComponent,
     EditarComponent,
     TelaInicialComponent,
-    CategoriasComponent
   ],
   imports: [
     BrowserModule,
